@@ -3,6 +3,11 @@ $users-copy-color = #cacaca
 $users-circle-background = #9f9e9e
 $facebook-blue = #3b5998
 $twitter-cyan = #55acee
+$twitter-hover-state = #55acee
+$linkedin-blue = #007bb6
+$linkedin-hover-state = $linkedin-blue
+$github-grayish-blue = #50687c
+$github-hover-state = $github-grayish-blue
 $title-color = #50687c
 $btn-bg-color = #4fa3de
 $btn-hover-state = #4188ba
@@ -63,6 +68,33 @@ body
   
 .display-none
   display none
+  
+// clases para botones
+.btn
+  //reset
+  border 0px
+  border-radius 6px
+  
+  &.btn-twitter
+    background-color $twitter-cyan
+    
+    &:hover
+      background-color $twitter-hover-state
+  
+  &.btn-linkedin
+    background-color $linkedin-blue
+    
+    &:hover
+      background-color $linkedin-hover-state
+  
+  &.btn-github
+    background-color $github-grayish-blue
+    
+    &:hover
+      background-color $github-hover-state
+    
+    
+ 
 
 // reglas de estilo
 div#hero
@@ -105,9 +137,7 @@ div#cta a.btn
   color white
   background $btn-bg-color
   font-size 20px
-  border 0px
   padding 10px 25px
-  border-radius 6px
   margin-top 25px
   margin-bottom 10px
 
@@ -135,11 +165,38 @@ div#read-manifesto p:after
         vertical-align middle
         width 8%
         font-size 42px
+        padding-right 20px
       div.content
         vertical-align middle
         color $list-item-color
         font-size 18px
         width 91%
+        
+div.modal#sign-manifesto
+  div.modal-dialog
+    width 75%
+    left 0px
+    div.modal-body
+      padding-top 40px
+      padding-bottom 40px
+      img
+        width 350px
+      h4
+        font-size 28px
+        margin-bottom 60px
+        color $title-color
+      .btn
+        font-size 18px
+        padding-top 8px
+        padding-bottom 8px
+        margin-bottom 20px
+        i.fa
+          margin-top 0px
+          margin-right 10px
+          vertical-align middle
+        span
+          margin-top 0px
+          vertical-align middle
   
 
 

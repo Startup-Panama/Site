@@ -28,3 +28,7 @@ www
 
 ### Bower ###
 bower_components
+
+### Vim ###
+*.swo
+*.swp

@@ -64,6 +64,10 @@ App.Views.SignModal = Backbone.View.extend({
 	}
 });
 
+App.Views.SignatureList = Backbone.View.extend({});
+
+App.Views.SignatureListItem = Backbone.View.extend({});
+
 
 // Initializing Configurations 
 App.initialize = function(opts){
@@ -76,8 +80,26 @@ App.setupDataLayer = function(){
 	// Check out BackboneFire https://github.com/firebase/backbonefire
 	App.Data.Users = new (Backbone.Firebase.Collection.extend({
 		model: App.Models.User,
-		url: App.opts.firebaseUrl + "/users"
+		url: App.opts.firebaseUrl + "/users",
+		autoSync: true
 	}))();
+
+	App.Data.Users.on('sync',function(collection){
+		console.log('collection is loaded', collection);
+	});
+};
+
+App.ifUserDontExistDo = function(uid,cb){
+	var collection = new (Backbone.Firebase.Collection.extend({
+		model: App.Models.User,
+		url: new Firebase(App.opts.firebaseUrl + "/users").orderByChild("uid").equalTo(uid),
+	}))();
+
+	collection.once("sync",function(collection){
+		if (collection.length === 0)
+			cb();
+		App.PubSub.trigger("UI:disable_sign_button",{});	
+	});
 };
 
 App.setupUILayer = function(){
@@ -89,19 +111,27 @@ App.setupEvents = function(){
 
 	// Auth Events
 	App.PubSub.once("auth:login",App.onLogin);
+	App.PubSub.once("UI:disable_sign_button",App.disableSignButton);
 
 };
 
+
+App.disableSignButton = function(){
+	$("#sign-btn").prop("disabled",true).addClass("disabled").text("ya firmaste el manifesto");
+	$("#sign-manifesto").modal("hide");
+};
+
 App.onLogin = function(result){
-	
-	if(result.provider === "github")
-		App.addGithubUser(result.payload);
+	App.ifUserDontExistDo(result.payload.uid,function(){
+		if(result.provider === "github")
+			App.addGithubUser(result.payload);
 
-	if(result.provider === "facebook")
-		App.addFacebookUser(result.payload);
+		if(result.provider === "facebook")
+			App.addFacebookUser(result.payload);
 
-	if(result.provider === "twitter")
-		App.addTwitterUser(result.payload);
+		if(result.provider === "twitter")
+			App.addTwitterUser(result.payload);
+	});
 }
 
 App.addGithubUser = function(payload){

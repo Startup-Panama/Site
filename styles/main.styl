@@ -19,95 +19,96 @@ $read-manifesto-color = $users-copy-color
 body
   font-family 'Open Sans', sans-serif
   font-size 18px
- 
+
 // clases para fuentes
 .open-sans
   font-family 'Open Sans'
   .bold
     font-weight 700
-    
+
   .semi-bold
     font-weight 600
-    
+
   .regular
     font-weight 400
-    
+
   .italic
     font-style italic
-  
+
 .lato
   font-family 'Lato'
   .bold
     font-weight 700
-    
+
   .regular
     font-weight 400
-    
+
   .italic
     font-style italic
 
 // clases de alineado
 .align-center
   text-align center
-  
+
 .align-left
   text-align left
-  
+
 .align-right
   text-align right
 
 // clases de display
 .display-block
   display block
-  
+
 .display-inline-block
   display inline-block
-  
+
 .display-inline
   display inline
-  
+
 .display-none
   display none
-  
+
 // clases para botones
 .btn
   //reset
   border 0px
   border-radius 6px
-  
+
   &.btn-twitter
     background-color $twitter-cyan
-    
+
     &:hover
       background-color $twitter-hover-state
-  
+
   &.btn-facebook
     background-color $facebook-blue
-    
+
     &:hover
       background-color $facebook-hover-state
-  
+
   &.btn-github
     background-color $github-grayish-blue
-    
+
     &:hover
       background-color $github-hover-state
-    
-    
- 
+
+
+
 
 // reglas de estilo
 div#hero
   margin-top 35px
-  
+
 header#header
   margin-top 20px
 
 div#manifesto-signatures
   margin-bottom 30px
-  
+
   div.circle
     background $users-circle-background
+    background-size contain
     border-radius 50%
     height 35px
     width 35px
@@ -147,7 +148,7 @@ div#read-manifesto p
   cursor pointer
   margin-top 10px
   color $read-manifesto-color
-  
+
 div#read-manifesto p:after
   font-family "FontAwesome"
   content "\f107"
@@ -171,7 +172,7 @@ div#read-manifesto p:after
         color $list-item-color
         font-size 18px
         width 91%
-        
+
 div.modal#sign-manifesto
   div.modal-dialog
     width 75%
@@ -197,7 +198,6 @@ div.modal#sign-manifesto
         span
           margin-top 0px
           vertical-align middle
-  
 
 
 
@@ -209,4 +209,5 @@ div.modal#sign-manifesto
 
 
 
-  
+
+

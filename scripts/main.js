@@ -19,7 +19,7 @@ App.Models.User = Backbone.Model.extend({
 	}
 });
 
-//Views 
+//Views
 App.Views.SignModal = Backbone.View.extend({
 	events:{
 		"click a.btn-github":"signWithGithub",
@@ -32,44 +32,63 @@ App.Views.SignModal = Backbone.View.extend({
 	signWithGithub: function(e){
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("github", function(error, authData) {
-		  if (error) {
-		    console.log("Login Failed!", error);
-		  } else {
-		    console.log("Authenticated successfully with payload:", authData);
-		    self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
-		  }
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
+			}
 		});
 	},
 	signWithTwitter: function(e){
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("twitter", function(error, authData) {
-		  if (error) {
-		    console.log("Login Failed!", error);
-		  } else {
-		    console.log("Authenticated successfully with payload:", authData);
-		    self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
-		  }
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
+			}
 		});
 	},
 	signWithFacebook: function(e){
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("facebook", function(error, authData) {
-		  if (error) {
-		    console.log("Login Failed!", error);
-		  } else {
-		    console.log("Authenticated successfully with payload:", authData);
-		    self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
-		  }
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
+			}
 		});
 	}
 });
 
-App.Views.SignatureList = Backbone.View.extend({});
+App.Views.SignatureList = Backbone.View.extend({
+	initialize: function(opts){
+		this.Users = opts.Users;
+		if(!this.Users.isEmpty()){ this.render(); }
+		this.listenTo(this.Users, 'sync', function(){ this.render(); });
+	},
+	render: function(){
+		var users = _.first(this.Users.shuffle(), 5);
 
-App.Views.SignatureListItem = Backbone.View.extend({});
+		var names = _.map(users, function(user){
+			return user.get('name').split(' ')[0];
+		}).join(', ');
 
+		this.$('.users-copy')
+			.html(names + ' y ' + (this.Users.length - users.length) +
+					 ' personas más han firmado el manifesto.');
 
-// Initializing Configurations 
+		_.each(users, function(user, i){
+			this.$('.user-pics div').eq(i)
+				.css('background-image', 'url(' + user.get('avatar') + ')');
+		}, this);
+	}
+});
+
+// Initializing Configurations
 App.initialize = function(opts){
 	App.opts = opts || {};
 	App.firebase = new Firebase(opts.firebaseUrl);
@@ -83,10 +102,6 @@ App.setupDataLayer = function(){
 		url: App.opts.firebaseUrl + "/users",
 		autoSync: true
 	}))();
-
-	App.Data.Users.on('sync',function(collection){
-		console.log('collection is loaded', collection);
-	});
 };
 
 App.ifUserDontExistDo = function(uid,cb){
@@ -98,12 +113,13 @@ App.ifUserDontExistDo = function(uid,cb){
 	collection.once("sync",function(collection){
 		if (collection.length === 0)
 			cb();
-		App.PubSub.trigger("UI:disable_sign_button",{});	
+		App.PubSub.trigger("UI:disable_sign_button",{});
 	});
 };
 
 App.setupUILayer = function(){
 	App.UI.SignModal = new App.Views.SignModal({el:"#sign-manifesto",PubSub: App.PubSub});
+	App.UI.SignatureList = new App.Views.SignatureList({el:"#manifesto-signatures", Users: App.Data.Users});
 };
 
 App.setupEvents = function(){

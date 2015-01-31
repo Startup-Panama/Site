@@ -32,3 +32,4 @@ bower_components
 ### Vim ###
 *.swo
 *.swp
+.vimrc

@@ -30,33 +30,42 @@ App.Views.SignModal = Backbone.View.extend({
 		this.PubSub = opts.PubSub;
 	},
 	signWithGithub: function(e){
+		if(ga){ ga('send', 'event', 'signWithGithub', 'start'); }
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("github", function(error, authData) {
 			if (error) {
+				if(ga){ ga('send', 'event', 'signWithGithub', 'error', error.code); }
 				console.log("Login Failed!", error);
 			} else {
+				if(ga){ ga('send', 'event', 'signWithGithub', 'success'); }
 				console.log("Authenticated successfully with payload:", authData);
 				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
 			}
 		});
 	},
 	signWithTwitter: function(e){
+		if(ga){ ga('send', 'event', 'signWithTwitter', 'start'); }
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("twitter", function(error, authData) {
 			if (error) {
+				if(ga){ ga('send', 'event', 'signWithTwitter', 'error', error.code); }
 				console.log("Login Failed!", error);
 			} else {
+				if(ga){ ga('send', 'event', 'signWithTwitter', 'success'); }
 				console.log("Authenticated successfully with payload:", authData);
 				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
 			}
 		});
 	},
 	signWithFacebook: function(e){
+		if(ga){ ga('send', 'event', 'signWithFacebook', 'start'); }
 		var self = App.UI.SignModal;
 		App.firebase.authWithOAuthPopup("facebook", function(error, authData) {
 			if (error) {
+				if(ga){ ga('send', 'event', 'signWithFacebook', 'error', error.code); }
 				console.log("Login Failed!", error);
 			} else {
+				if(ga){ ga('send', 'event', 'signWithFacebook', 'success'); }
 				console.log("Authenticated successfully with payload:", authData);
 				self.PubSub.trigger('auth:login',{ provider: authData.provider, payload: authData });
 			}

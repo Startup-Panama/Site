@@ -88,7 +88,7 @@ App.Views.SignatureList = Backbone.View.extend({
 
 		this.$('.users-copy')
 			.html(names + ' y ' + (this.Users.length - users.length) +
-					 ' personas más han firmado el manifesto.');
+					 ' personas más han firmado el manifiesto.');
 
 		_.each(users, function(user, i){
 			this.$('.user-pics div').eq(i)
@@ -142,7 +142,7 @@ App.setupEvents = function(){
 
 
 App.disableSignButton = function(){
-	$("#sign-btn").prop("disabled",true).addClass("disabled").text("ya firmaste el manifesto");
+	$("#sign-btn").prop("disabled",true).addClass("disabled").text("¡Gracias por firmar el manifiesto!");
 	$("#sign-manifesto").modal("hide");
 };
 

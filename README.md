@@ -1,7 +1,7 @@
 Sitio de Panama Startup Way Manifesto
 ======
 
-Este repositorio contiene el sitio de [Panama Startup Way Manifesto](http://insertarurldelsito.com), la pagina fue generada con Jade y Stylus usando el preprocesador y server estatico [HarpJs](https://www.harpjs.com).
+Este repositorio contiene el sitio de [Panama Startup Way Manifesto](http://panamastartupway.com/), la pagina fue generada con Jade y Stylus usando el preprocesador y server estatico [HarpJs](https://www.harpjs.com).
 
 ## Setting Up
 - Instalar [Node.js](http://nodejs.org/)

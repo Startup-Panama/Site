@@ -3,6 +3,14 @@
 #### Rogelio Morrell
 Aprende a organizar tu producto con Trello. Todo desde el backlog hasta el daily scrum.
 
+Agenda
+* Desarrollo Agil - 10 min
+* Usando Trello   - 10 min
+* Product Backlog - 10 min
+* Sprint 01       - 10 min
+* MVP             -  5 min
+* P & R           -  X min
+
 
 ### Introduccion a Python / Django - 45 min - M# 4 -  25 Abr (Hosted by Flisol) - Confirmado
 #### Alexis Hevia

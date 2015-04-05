@@ -16,6 +16,12 @@ Agenda
 #### Alexis Hevia
 Un startup necesita prototipos y pruebas de conceptos de una manera eficiente. Ven y aprende como Python, un lenguaje dinámico, ofrece un ambiente de desarrollo adaptado a los startups.
 
+Agenda
+* Cómo elegir la tecnología para nuestro proyecto - 5 minutos
+* Introducción a Python - 10 minutos
+* Construyendo un clon de Uber con Django - 30 minutos
+* Preguntas y Respuestas
+
 
 ### UX - jQuery y Bootstrap - 45 min - M# 4  - 9 May
 

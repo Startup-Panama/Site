@@ -14,3 +14,6 @@ La aplicación debe estar corriendo en [http://localhost:9000/](http://localhost
 harp compile
 ```
 La versión compilada va a estar en la carpeta `www`.
+
+## Domain / Hosting
+El dominio está registrado en GoDaddy, bajo la cuenta de Alexis. La página está hospedada en WebHostingBuzz, en un servidor de Alexis.

@@ -12,8 +12,13 @@ La aplicación debe estar corriendo en [http://localhost:9000/](http://localhost
 ## Compilar Pagina
 ```
 harp compile
+sudo rm -r www/.git
 ```
 La versión compilada va a estar en la carpeta `www`.
 
 ## Domain / Hosting
-El dominio está registrado en GoDaddy, bajo la cuenta de Alexis. La página está hospedada en WebHostingBuzz, en un servidor de Alexis.
+El dominio está registrado en GoDaddy, bajo la cuenta de Alexis.  
+La página está hospedada en WebHostingBuzz, en un servidor de Alexis.
+```
+rsync -avz -e 'ssh -p 47926' --progress ./www/ xlwebsit@xlwebsites.com:/home/xlwebsit/public_html/panamastartupway.com
+```
